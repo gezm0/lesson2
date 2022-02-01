@@ -7,7 +7,7 @@
   - name: Create user
     user:
       name: "{{ item.key }}"
-      password: "{{ item.value.userpass }}"
+      password: "{{ item.value.userpass | password_hash('sha512') }}"
       home: "{{ item.value.homedir }}"
       shell: "{{ item.value.shell }}"
       comment: "{{ item.value.comment }}"
