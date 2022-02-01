@@ -13,5 +13,5 @@
       comment: "{{ item.value.comment }}"
       state: present
       update_password: on_create
-    loop: "{{ users }}"
+    with_dict: "{{ users }}"
 ...
