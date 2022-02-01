@@ -3,11 +3,6 @@
   hosts: nodes
   vars_files:
     - vars/users
-  vars:
-    user_list:
-      - alice
-      - bob
-      - carol
   tasks:
   - name: Create user
     user:
@@ -18,6 +13,5 @@
       comment: "{{ item.value.comment }}"
       state: present
       update_password: on_create
-    with_dict: "{{ users }}"
-    loop: "{{ user_list }}"
+    loop: "{{ users }}"
 ...
