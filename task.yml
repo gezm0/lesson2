@@ -3,20 +3,21 @@
   hosts: nodes
   vars_files:
     - vars/users
+  vars:
+    user_list:
+      - alice
+      - bob
+      - carol
   tasks:
   - name: Create user
-   # user:
-   #   name: "{{ item.username }}"
-   #   password: "{{ item.userpass}}"
-   #   home: "{{ item.homedir }}"
-   #   shell: "{{ item.shell }}"
-   #   comment: "{{ item.comment }}"
-   #   state: present
-   #   update_password: on_create
-   # with_dict: "{{ users }}"
-    debug:
-      msg: >
-        Username: "{{ item.username }}"
-        Password: "{{ item.userpass}}"
-        Comment: "{{ item.comment }}"
+    user:
+      name: "{{ item.key }}"
+      password: "{{ item.value.userpass }}"
+      home: "{{ item.value.homedir }}"
+      shell: "{{ item.value.shell }}"
+      comment: "{{ item.value.comment }}"
+      state: present
+      update_password: on_create
+    with_dict: "{{ users }}"
+    loop: "{{ user_list }}"
 ...
