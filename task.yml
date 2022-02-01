@@ -1,0 +1,22 @@
+---
+- name: My playbook for task
+  hosts: nodes
+  vars_files:
+    - vars/users
+  tasks:
+  - name: Create user
+   # user:
+   #   name: "{{ item.username }}"
+   #   password: "{{ item.userpass}}"
+   #   home: "{{ item.homedir }}"
+   #   shell: "{{ item.shell }}"
+   #   comment: "{{ item.comment }}"
+   #   state: present
+   #   update_password: on_create
+   # with_dict: "{{ users }}"
+    debug:
+      msg: >
+        Username: "{{ item.username }}"
+        Password: "{{ item.userpass}}"
+        Comment: "{{ item.comment }}"
+...
