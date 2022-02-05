@@ -5,6 +5,7 @@
     - vars/users
   tasks:
   - name: Create user
+    no_log: True
     user:
       name: "{{ item.key }}"
       password: "{{ item.value.userpass | password_hash('sha512') }}"
